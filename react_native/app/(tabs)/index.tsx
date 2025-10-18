@@ -70,6 +70,9 @@ export default function TabOneScreen() {
   const snapPoints = useMemo(() => ['25%', '50%', '85%'], []);
 
   // ボタンが押されたときにボトムシートを開くためのコールバック関数
+  // const handleOpenPress = useCallback(() => {
+  //   bottomSheetRef.current?.expand();
+  // }, []);
   const handleOpenPress = () => {
 
   }
