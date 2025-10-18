@@ -29,7 +29,7 @@ def build_knn_graph(coords: list[tuple[float, float]], k: int = 4):
   graph: list[list[int]] = [[] for _ in range(n)]
   for i in range(n):
     lat1, lon1 = coords[i]
-    free = max(0, k - len(graph[pos]))
+    free = max(0, k - len(graph[i]))
     dists: list[tuple[float, int]] = []
 
     if free == 0:
@@ -38,9 +38,9 @@ def build_knn_graph(coords: list[tuple[float, float]], k: int = 4):
       lat2, lon2 = coords[j]
       dist = haversine(lat1, lon1, lat2, lon2)
       dists.append((dist, j))
-      for _, j in heapq.nsmallest(free, dists):
-        graph[i].append(j)
-        graph[j].append(i)
+    for _, j in heapq.nsmallest(free, dists):
+      graph[i].append(j)
+      graph[j].append(i)
   return graph
 
 coords_list = pd.read_csv('coords4.csv', header=None).values[:, 1:].tolist()
