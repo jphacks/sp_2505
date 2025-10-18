@@ -1,5 +1,6 @@
 import { ExternalLink } from '@tamagui/lucide-icons'
 import { Anchor, H2, Paragraph, View, XStack, YStack } from 'tamagui'
+import { Compass, Locate, LocateFixed } from '@tamagui/lucide-icons'
 import { ToastControl } from 'components/CurrentToast'
 import MapView, { Region } from 'react-native-maps'
 import { useEffect, useState } from 'react'

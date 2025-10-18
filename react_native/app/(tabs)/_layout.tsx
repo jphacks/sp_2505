@@ -1,6 +1,8 @@
+import { Image } from 'react-native'
 import { Link, Tabs } from 'expo-router'
 import { Button, useTheme } from 'tamagui'
-import { Atom, AudioWaveform } from '@tamagui/lucide-icons'
+import { Atom, BookOpenText, Home, Medal } from '@tamagui/lucide-icons'
+import HumanWalk from "../../assets/images/mdi--human-walk.png"
 
 export default function TabLayout() {
   const theme = useTheme()
@@ -23,8 +25,8 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <Atom color={color as any} />,
+          title: 'ホーム画面',
+          tabBarIcon: ({ color }) => <Home color={color as any} />,
           headerRight: () => (
             <Link href="/modal" asChild>
               <Button mr="$4" size="$2.5">
@@ -35,10 +37,31 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="two"
+        name="challenge"
         options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <AudioWaveform color={color as any} />,
+          title: 'チャレンジ目標',
+          tabBarIcon: ({ color }) => <Medal color={color as any} />,
+        }}
+      />
+      <Tabs.Screen
+        name="filter"
+        options={{
+          title: '検索開始',
+          tabBarIcon: ({ color, size }) => <Image source={HumanWalk} style={{width: size, height: size, tintColor: color}} />,
+        }}
+      />
+      <Tabs.Screen
+        name="logs"
+        options={{
+          title: 'ログ',
+          tabBarIcon: ({ color }) => <BookOpenText color={color as any} />,
+        }}
+      />
+      <Tabs.Screen
+        name="settings"
+        options={{
+          title: '設定',
+          tabBarIcon: ({ color }) => <Atom color={color as any} />,
         }}
       />
     </Tabs>
