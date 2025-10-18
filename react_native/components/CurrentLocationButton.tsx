@@ -92,7 +92,7 @@ const CurrentLocationButton: React.FC<CurrentLocationButtonProps> = ({ mapRef })
 
   return (
     <TouchableOpacity style={styles.buttonContainer} onPress={handlePress}>
-      <Locate color="#333" size={40} />
+      <Locate color="#000" size={40} />
     </TouchableOpacity>
   );
 };
@@ -100,8 +100,8 @@ const CurrentLocationButton: React.FC<CurrentLocationButtonProps> = ({ mapRef })
 const styles = StyleSheet.create({
   buttonContainer: {
     position: 'absolute', // MapViewの上に重ねて表示
-    bottom: 30,
-    right: 20,
+    bottom: -50,
+    right: 15,
     backgroundColor: '#FFFFFF',
     borderRadius: 50,
     padding: 12,

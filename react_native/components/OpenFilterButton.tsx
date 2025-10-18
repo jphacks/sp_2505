@@ -19,8 +19,8 @@ const OpenFilterButton: React.FC<OpenFilterButtonProps> = ({ onPress }) => {
 const styles = StyleSheet.create({
   button: {
     position: 'absolute', // 地図の上に配置するために絶対位置を指定
-    bottom: 30,
-    right: 20,
+    bottom: -90,
+    right: 155,
     backgroundColor: '#007AFF', // iOSの標準的な青色
     width: 60,
     height: 60,

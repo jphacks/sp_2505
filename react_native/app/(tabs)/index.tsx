@@ -1,16 +1,16 @@
 import React, { useRef, useMemo, useCallback } from 'react'
 import { ExternalLink } from '@tamagui/lucide-icons'
-import { Anchor, H2, Paragraph, View, XStack, YStack } from 'tamagui'
+import { Anchor, H2, Paragraph, View, Text, XStack, YStack } from 'tamagui'
 import { Compass, Locate, LocateFixed } from '@tamagui/lucide-icons'
 import { ToastControl } from 'components/CurrentToast'
 import MapView, { Marker, PROVIDER_GOOGLE, Region } from 'react-native-maps'
 import { useEffect, useState } from 'react'
 import { getCurrentPositionAsync, getForegroundPermissionsAsync, requestForegroundPermissionsAsync } from "expo-location"
-import { StyleSheet, SafeAreaView } from 'react-native'
+import { StyleSheet } from 'react-native'
 import BottomSheet from '@gorhom/bottom-sheet'
 import CurrentLocationButton from '@/components/CurrentLocationButton'
 import Filter from './Filter';
-import OpenFilterButton from '../../components/OpenFilterButton';
+// import OpenFilterButton from '../../components/OpenFilterButton';
 
 export default function TabOneScreen() {
   const [initRegion, setInitRegion] = useState<Region | null>(null)
@@ -70,14 +70,14 @@ export default function TabOneScreen() {
   const snapPoints = useMemo(() => ['25%', '50%', '85%'], []);
 
   // ボタンが押されたときにボトムシートを開くためのコールバック関数
-  const handleOpenPress = useCallback(() => {
-    bottomSheetRef.current?.expand();
-  }, []);
+  const handleOpenPress = () => {
+
+  }
 
   // --- レンダリング ---
   return (
     // 全体を単一のViewで囲み、構文エラーを解消
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <MapView
         ref={mapRef}
         provider={PROVIDER_GOOGLE}
@@ -92,7 +92,7 @@ export default function TabOneScreen() {
         <View style={{ marginBottom: 12 }}>
             <CurrentLocationButton mapRef={mapRef} />
         </View>
-        <OpenFilterButton onPress={handleOpenPress} />
+        {/* <OpenFilterButton onPress={handleOpenPress} /> */}
       </View>
 
       {/* --- ボトムシート --- */}
@@ -102,14 +102,14 @@ export default function TabOneScreen() {
         snapPoints={snapPoints}
         enablePanDownToClose={true}
         backgroundStyle={{
-          backgroundColor: '#ffffff' 
+          backgroundColor: '#ffffff'
         }}
       >
         <View style={styles.contentContainer}>
-            <Filter />
+          <Filter />
         </View>
       </BottomSheet>
-    </SafeAreaView>
+    </View>
   );
 }
 

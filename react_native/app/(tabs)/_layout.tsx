@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler'
 import { Image } from 'react-native'
 import { Link, Tabs, Slot } from 'expo-router'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
@@ -24,23 +25,20 @@ export default function TabLayout() {
           },
           headerTintColor: theme.color.val,
           headerShown: false,
-          tabBarIcon: {
-            size: 30,
-          }
         }}
       >
         <Tabs.Screen
           name="index"
           options={{
             title: 'ホーム画面',
-            tabBarIcon: ({ color }) => <Home color={color as any} />,
+            tabBarIcon: ({ color }) => <Home color={color as any} size={30} />,
           }}
         />
         <Tabs.Screen
           name="challenge"
           options={{
             title: 'チャレンジ目標',
-            tabBarIcon: ({ color }) => <Medal color={color as any} />,
+            tabBarIcon: ({ color }) => <Medal color={color as any} size={30} />,
           }}
         />
         <Tabs.Screen
@@ -54,14 +52,14 @@ export default function TabLayout() {
           name="logs"
           options={{
             title: 'ログ',
-            tabBarIcon: ({ color }) => <BookOpenText color={color as any} />,
+            tabBarIcon: ({ color }) => <BookOpenText color={color as any} size={30} />,
           }}
         />
         <Tabs.Screen
           name="settings"
           options={{
             title: '設定',
-            tabBarIcon: ({ color }) => <Atom color={color as any} />,
+            tabBarIcon: ({ color }) => <Atom color={color as any} size={30} />,
           }}
         />
       </Tabs>

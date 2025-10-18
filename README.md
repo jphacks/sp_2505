@@ -1,36 +1,29 @@
-# サンプル（プロダクト名）
+# 実行
+- nodeバージョン: 22.20.0 (lts)
 
-[![IMAGE ALT TEXT HERE](https://jphacks.com/wp-content/uploads/2025/05/JPHACKS2025_ogp.jpg)](https://www.youtube.com/watch?v=lA9EluZugD8)
+```bash
+npm i -g yarn
+yarn set version stable
+yarn add
+npx expo prebuild
+```
 
-## 製品概要
-### 背景(製品開発のきっかけ、課題等）
-### 製品説明（具体的な製品の説明）
-### 特長
-#### 1. 特長1
-#### 2. 特長2
-#### 3. 特長3
+- ここで一旦ネイティブコードをいじる必要がある
+- 生成された`android/app/src/main/AndroidManifest.xml`の`<manifest>`内に以下を追記
 
-### 解決出来ること
-### 今後の展望
-### 注力したこと（こだわり等）
-* 
-* 
- 
-## 開発技術
-### 活用した技術
-#### API・データ
-* 
-* 
+```xml
+  <application>
+    <meta-data
+      android:name="com.google.android.geo.API_KEY"
+      android:value="[GCPから取ってきたAPIキー]"
+    />
+  </application>
+```
 
-#### フレームワーク・ライブラリ・モジュール
-* 
-* 
+- ビルド & 実行
 
-#### デバイス
-* 
-* 
+```bash
+npx expo run:android
+```
 
-### 独自技術
-#### ハッカソンで開発した独自機能・技術
-* 独自で開発したものの内容をこちらに記載してください
-* 特に力を入れた部分をファイルリンク、またはcommit_idを記載してください。
+- 以降はこのコマンドで実行する(`npx expo start` は使わない)
