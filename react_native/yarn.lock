@@ -1823,9 +1823,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@gorhom/bottom-sheet@npm:^4.6.4":
-  version: 4.6.4
-  resolution: "@gorhom/bottom-sheet@npm:4.6.4"
+"@gorhom/bottom-sheet@npm:^5.2.6":
+  version: 5.2.6
+  resolution: "@gorhom/bottom-sheet@npm:5.2.6"
   dependencies:
     "@gorhom/portal": "npm:1.0.14"
     invariant: "npm:^2.2.4"
@@ -1834,14 +1834,14 @@ __metadata:
     "@types/react-native": "*"
     react: "*"
     react-native: "*"
-    react-native-gesture-handler: ">=1.10.1"
-    react-native-reanimated: ">=2.2.0"
+    react-native-gesture-handler: ">=2.16.1"
+    react-native-reanimated: "*"
   peerDependenciesMeta:
     "@types/react":
       optional: true
     "@types/react-native":
       optional: true
-  checksum: 10/a437c5490c13c69100a7b605039a51064847b82202a985ec09acd7c6e6c39e735380c5e612b212c6466d95e3e3817e3ef50f54d18d489fcb2f1294370b4b5616
+  checksum: 10/bca8cf14a7627d2fb2b5e6ed75e5fa79be373ee1d227941e0a3c1b33b3385b04a24353b0c48c00b8aeea72a17a4612eefd31ac1b38ab66f5b3103d3d4eb9fef2
   languageName: node
   linkType: hard
 
@@ -9913,23 +9913,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-maps@npm:^1.26.17":
-  version: 1.26.17
-  resolution: "react-native-maps@npm:1.26.17"
+"react-native-maps@npm:1.20.1":
+  version: 1.20.1
+  resolution: "react-native-maps@npm:1.20.1"
   dependencies:
     "@types/geojson": "npm:^7946.0.13"
   peerDependencies:
-    react: ">= 18.3.1"
-    react-native: ">= 0.76.0"
+    react: ">= 17.0.1"
+    react-native: ">= 0.64.3"
     react-native-web: ">= 0.11"
   peerDependenciesMeta:
     react-native-web:
       optional: true
-  checksum: 10/9f228b2785371f1d9b72aeecf35d4286d89b0ce853c470b77fb6e47fce4c9cc9e03751160e89cbf2d37ec0bfc6a36cdfdbf3a5220736433a67eda42472ceb292
+  checksum: 10/582fbf4d2f210251626e7f8296cf05451453a974b56b6855dae44839c895462781057b0ebcece920cb413e58d2e4c57ec229bd55678da25d5600278317dc3e51
   languageName: node
   linkType: hard
 
-"react-native-reanimated@npm:~4.1.1":
+"react-native-reanimated@npm:^4.1.3":
   version: 4.1.3
   resolution: "react-native-reanimated@npm:4.1.3"
   dependencies:
@@ -10216,7 +10216,7 @@ __metadata:
     "@babel/core": "npm:^7.24.6"
     "@expo/metro-config": "npm:~54.0.2"
     "@expo/metro-runtime": "npm:~6.1.2"
-    "@gorhom/bottom-sheet": "npm:^4.6.4"
+    "@gorhom/bottom-sheet": "npm:^5.2.6"
     "@react-navigation/native": "npm:^7.1.6"
     "@tamagui/babel-plugin": "npm:^1.135.3"
     "@tamagui/cli": "npm:^1.135.3"
@@ -10243,8 +10243,8 @@ __metadata:
     react-native: "npm:0.81.4"
     react-native-geolocation-service: "npm:^5.3.1"
     react-native-gesture-handler: "npm:^2.28.0"
-    react-native-maps: "npm:^1.26.17"
-    react-native-reanimated: "npm:~4.1.1"
+    react-native-maps: "npm:1.20.1"
+    react-native-reanimated: "npm:^4.1.3"
     react-native-safe-area-context: "npm:~5.6.0"
     react-native-screens: "npm:~4.16.0"
     react-native-svg: "npm:15.12.1"
