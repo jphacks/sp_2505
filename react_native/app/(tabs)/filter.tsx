@@ -1,11 +1,27 @@
+import React from 'react';
+import { StyleSheet } from 'react-native';
+import { Atom } from '@tamagui/lucide-icons';
 import { Text, View } from 'tamagui'
 
-export default function TabTwoScreen() {
+const Filter = () => {
   return (
-    <View flex={1} items="center" justify="center" bg="$background">
-      <Text fontSize={20} color="$blue10">
-        (一応タブとして表示) 検索条件を入力できる画面です
-      </Text>
+    <View style={styles.container}>
+      <Text style={styles.title}>Hello World!</Text>
     </View>
-  )
-}
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 16,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+  },
+});
+
+export default Filter;
