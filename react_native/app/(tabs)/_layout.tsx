@@ -41,6 +41,13 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => <AudioWaveform color={color as any} />,
         }}
       />
+      <Tabs.Screen
+        name="mission"
+        options={{
+          title: 'ミッション',
+          tabBarIcon: ({ color }) => <Atom color={color as any} />,
+        }}
+      />
     </Tabs>
   )
 }
