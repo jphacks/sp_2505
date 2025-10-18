@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   TouchableOpacity,
   Image,
@@ -6,6 +6,7 @@ import {
   Alert,
   PermissionsAndroid,
   Platform,
+  ActivityIndicator,
 } from 'react-native';
 import MapView from 'react-native-maps';
 import Geolocation from 'react-native-geolocation-service';
@@ -21,6 +22,8 @@ interface CurrentLocationButtonProps {
  * @param {CurrentLocationButtonProps} props - mapRefを含むProps
  */
 const CurrentLocationButton: React.FC<CurrentLocationButtonProps> = ({ mapRef }) => {
+  const [isLocating, setIsLocating] = useState(false);
+
   /**
    * 位置情報取得の権限をリクエストする関数
    */
@@ -50,49 +53,70 @@ const CurrentLocationButton: React.FC<CurrentLocationButtonProps> = ({ mapRef })
   };
 
   /**
+   * 現在地を取得する関数 (Promiseを返す)
+   */
+  const getCurrentLocation = (): Promise<Geolocation.GeoPosition> => {
+    return new Promise((resolve, reject) => {
+      Geolocation.getCurrentPosition(
+        (position) => resolve(position),
+        (error) => reject(error),
+        {
+          enableHighAccuracy: true,
+          timeout: 15000,
+          maximumAge: 10000,
+        },
+      );
+    });
+  };
+
+  /**
    * ボタンが押された際の処理
    */
   const handlePress = async () => {
-    // 最初に権限を確認・リクエストする
-    const hasPermission = await requestLocationPermission();
-    if (!hasPermission) {
-      Alert.alert('エラー', '位置情報の利用が許可されていません。');
-      return;
+    if (isLocating) return; // 処理中の多重タップを防止
+
+    setIsLocating(true); // ローディング開始
+
+    try {
+      // 最初に権限を確認・リクエストする
+      const hasPermission = await requestLocationPermission();
+      if (!hasPermission) {
+        Alert.alert('許可が必要です', '位置情報の利用が許可されていません。');
+        return; // finallyブロックは実行される
+      }
+
+      // 権限がある場合、現在地を取得する
+      const position = await getCurrentLocation();
+      const { latitude, longitude } = position.coords;
+
+      // mapRef.currentが存在することを確認してからメソッドを呼び出す
+      if (mapRef.current) {
+        mapRef.current.animateToRegion(
+          {
+            latitude,
+            longitude,
+            latitudeDelta: 0.015,
+            longitudeDelta: 0.0121,
+          },
+          1000, // 1秒かけてアニメーション
+        );
+      }
+    } catch (error) {
+      const err = error as { code: number, message: string };
+      console.error(err.code, err.message);
+      Alert.alert('エラー', '現在地の取得に失敗しました。端末の位置情報設定がオンになっているか確認してください。');
+    } finally {
+      setIsLocating(false); // ローディング終了
     }
-
-    // 権限がある場合、現在地を取得する
-    Geolocation.getCurrentPosition(
-      (position) => {
-        const { latitude, longitude } = position.coords;
-
-        // mapRef.currentが存在することを確認してからメソッドを呼び出す
-        if (mapRef.current) {
-          mapRef.current.animateToRegion(
-            {
-              latitude,
-              longitude,
-              latitudeDelta: 0.015,  // ズームレベル（小さいほど拡大）
-              longitudeDelta: 0.0121, // ズームレベル
-            },
-            1000, // 1秒かけてアニメーション
-          );
-        }
-      },
-      (error) => {
-        Alert.alert('エラー', '現在地の取得に失敗しました。');
-        console.log(error.code, error.message);
-      },
-      {
-        enableHighAccuracy: true, // 高精度な位置情報を要求
-        timeout: 15000,           // 15秒でタイムアウト
-        maximumAge: 10000,        // 10秒以内のキャッシュされた位置情報を使用
-      },
-    );
   };
 
   return (
-    <TouchableOpacity style={styles.buttonContainer} onPress={handlePress}>
-      <Locate color="#000" size={40} />
+    <TouchableOpacity style={styles.buttonContainer} onPress={handlePress} disabled={isLocating}>
+      {isLocating ? (
+        <ActivityIndicator size="large" color="#0000ff" />
+      ) : (
+        <Locate color="#000" size={40} />
+      )}
     </TouchableOpacity>
   );
 };

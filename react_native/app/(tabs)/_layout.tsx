@@ -17,7 +17,7 @@ export default function TabLayout() {
           tabBarStyle: {
             backgroundColor: theme.background.val,
             borderTopColor: theme.borderColor.val,
-            height: 120,
+            height: 100,
           },
           headerStyle: {
             backgroundColor: theme.background.val,
@@ -42,9 +42,9 @@ export default function TabLayout() {
           }}
         />
         <Tabs.Screen
-          name="filter"
+          name="Filter"
           options={{
-            title: '検索開始',
+            title: '開始',
             tabBarIcon: ({ color, size }) => <Image source={HumanWalk} style={{width: size, height: size, tintColor: color}} />,
           }}
         />

@@ -1,12 +1,11 @@
-import React, { useRef, useMemo, useCallback } from 'react'
+import React, { useRef, useMemo, useCallback, useEffect, useState } from 'react'
 import { ExternalLink } from '@tamagui/lucide-icons'
 import { Anchor, H2, Paragraph, View, Text, XStack, YStack } from 'tamagui'
 import { Compass, Locate, LocateFixed } from '@tamagui/lucide-icons'
 import { ToastControl } from 'components/CurrentToast'
 import MapView, { Marker, PROVIDER_GOOGLE, Region } from 'react-native-maps'
-import { useEffect, useState } from 'react'
 import { getCurrentPositionAsync, getForegroundPermissionsAsync, requestForegroundPermissionsAsync } from "expo-location"
-import { StyleSheet } from 'react-native'
+import { StyleSheet, Pressable } from 'react-native'
 import BottomSheet from '@gorhom/bottom-sheet'
 import CurrentLocationButton from '@/components/CurrentLocationButton'
 import Filter from './Filter';
@@ -21,7 +20,7 @@ export default function TabOneScreen() {
   const mapRef = useRef<MapView>(null);
 
   //旧FilterScreen
-  const bottomSheetRef = useRef<BottomSheet>(null);
+  // const bottomSheetRef = useRef<BottomSheet>(null);
 
   useEffect(() => {
     // 位置情報のアクセス許可を取り、現在地情報を取得する
@@ -67,15 +66,15 @@ export default function TabOneScreen() {
 
   // ボトムシートがどの高さで止まるかを定義
   // ここでは画面の25%と85%の高さで止まるように設定
-  const snapPoints = useMemo(() => ['25%', '50%', '85%'], []);
+  // const snapPoints = useMemo(() => ['25%', '50%', '85%'], []);
 
   // ボタンが押されたときにボトムシートを開くためのコールバック関数
   // const handleOpenPress = useCallback(() => {
   //   bottomSheetRef.current?.expand();
   // }, []);
-  const handleOpenPress = () => {
+  // const handleOpenPress = () => {
 
-  }
+  // }
 
   // --- レンダリング ---
   return (
@@ -99,6 +98,37 @@ export default function TabOneScreen() {
       </View>
 
       {/* --- ボトムシート --- */}
+      {/* <BottomSheet
+        ref={bottomSheetRef}
+        index={-1} // 初期状態は閉じておく
+        snapPoints={snapPoints}
+        enablePanDownToClose={true}
+        backgroundStyle={{
+          backgroundColor: '#ffffff'
+        }}
+      >
+        <View style={styles.contentContainer}>
+          <Filter />
+        </View>
+      </BottomSheet> */}
+    </View>
+  );
+}
+
+export function OpenFilterScreen() {
+  const bottomSheetRef = useRef<BottomSheet>(null);
+
+  // ボトムシートがどの高さで止まるかを定義
+  // ここでは画面の25%と85%の高さで止まるように設定
+  const snapPoints = useMemo(() => ['25%', '50%', '85%'], []);
+
+  // ボタンが押されたときにボトムシートを開くためのコールバック関数
+  const handleOpenPress = useCallback(() => {
+    bottomSheetRef.current?.expand();
+  }, []);
+
+  return (
+    <View style={styles.container}>
       <BottomSheet
         ref={bottomSheetRef}
         index={-1} // 初期状態は閉じておく
@@ -113,25 +143,25 @@ export default function TabOneScreen() {
         </View>
       </BottomSheet>
     </View>
-  );
+  )
 }
 
 // --- スタイル定義 ---
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-    },
-    map: {
-      ...StyleSheet.absoluteFillObject, // 画面全体にマップを表示
-    },
-    buttonContainer: {
-      position: 'absolute', // 親要素(container)に対して絶対位置を指定
-      bottom: 100, // 下からの位置
-      right: 20,   // 右からの位置
-    },
-    contentContainer: {
-      flex: 1,
-      alignItems: 'center',
-      padding: 16,
-    },
-  });
+  container: {
+    flex: 1,
+  },
+  map: {
+    ...StyleSheet.absoluteFillObject, // 画面全体にマップを表示
+  },
+  buttonContainer: {
+    position: 'absolute', // 親要素(container)に対して絶対位置を指定
+    bottom: 100, // 下からの位置
+    right: 20,   // 右からの位置
+  },
+  contentContainer: {
+    flex: 1,
+    alignItems: 'center',
+    padding: 16,
+  },
+});
