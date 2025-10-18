@@ -12,15 +12,15 @@ import Geolocation from 'react-native-geolocation-service';
 import { Locate, LocateFixed} from '@tamagui/lucide-icons'
 
 // このコンポーネントが受け取るPropsの型を定義します
-interface CenterMapButtonProps {
+interface CurrentLocationButtonProps {
   mapRef: React.RefObject<MapView>;
 }
 
 /**
  * 現在地に地図の中心を移動させるボタンコンポーネント
- * @param {CenterMapButtonProps} props - mapRefを含むProps
+ * @param {CurrentLocationButtonProps} props - mapRefを含むProps
  */
-const CenterMapButton: React.FC<CenterMapButtonProps> = ({ mapRef }) => {
+const CurrentLocationButton: React.FC<CurrentLocationButtonProps> = ({ mapRef }) => {
   /**
    * 位置情報取得の権限をリクエストする関数
    */
@@ -92,7 +92,7 @@ const CenterMapButton: React.FC<CenterMapButtonProps> = ({ mapRef }) => {
 
   return (
     <TouchableOpacity style={styles.buttonContainer} onPress={handlePress}>
-      <Image source={Locate} style={styles.icon} />
+      <Locate color="#333" size={40} />
     </TouchableOpacity>
   );
 };
@@ -111,10 +111,6 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-  },
-  icon: {
-    width: 28,
-    height: 28,
   },
 });
 

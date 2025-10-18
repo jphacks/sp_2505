@@ -14,12 +14,17 @@ export default function TabLayout() {
         tabBarStyle: {
           backgroundColor: theme.background.val,
           borderTopColor: theme.borderColor.val,
+          height: 120,
         },
         headerStyle: {
           backgroundColor: theme.background.val,
           borderBottomColor: theme.borderColor.val,
         },
         headerTintColor: theme.color.val,
+        headerShown: false,
+        tabBarIcon: {
+          size: 30,
+        }
       }}
     >
       <Tabs.Screen
@@ -27,13 +32,6 @@ export default function TabLayout() {
         options={{
           title: 'ホーム画面',
           tabBarIcon: ({ color }) => <Home color={color as any} />,
-          headerRight: () => (
-            <Link href="/modal" asChild>
-              <Button mr="$4" size="$2.5">
-                Hello!
-              </Button>
-            </Link>
-          ),
         }}
       />
       <Tabs.Screen

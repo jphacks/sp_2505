@@ -5,8 +5,8 @@ import { ToastControl } from 'components/CurrentToast'
 import MapView, { Region } from 'react-native-maps'
 import { useEffect, useState } from 'react'
 import { getCurrentPositionAsync, getForegroundPermissionsAsync, requestForegroundPermissionsAsync } from "expo-location"
-import CurrentLocationButton from "../../components/CurrentLocationButton"
-import { StyleSheet } from 'react-native'
+import CurrentLocationButton from '@/components/CurrentLocationButton'
+import { StyleSheet, SafeAreaView } from 'react-native'
 
 export default function TabOneScreen() {
   const [initRegion, setInitRegion] = useState<Region | null>(null)
@@ -52,7 +52,7 @@ export default function TabOneScreen() {
     const mapRef = useRef<MapView>(null);
 
     return (
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
         <MapView
           ref={mapRef} // 作成したrefをMapViewに渡す
           provider={PROVIDER_GOOGLE}
@@ -68,13 +68,13 @@ export default function TabOneScreen() {
         />
         {/* MapViewの上にボタンコンポーネントを配置し、refを渡す */}
         <CurrentLocationButton mapRef={mapRef} />
-      </View>
+      </SafeAreaView>
     );
   };
 
   const styles = StyleSheet.create({
     container: {
-      ...StyleSheet.absoluteFillObject,
+      flex: 1,
     },
     map: {
       ...StyleSheet.absoluteFillObject,
