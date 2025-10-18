@@ -26,7 +26,7 @@ def haversine(lat1: float, lon1: float, lat2: float, lon2: float):
 
 def build_knn_graph(coords: list[tuple[float, float]], k: int = 4):
   n = len(coords)
-  graph: list[list[int]] = [[] for _ in range(n)]
+  graph: list[set[int]] = [set() for _ in range(n)]
   for i in range(n):
     lat1, lon1 = coords[i]
     free = max(0, k - len(graph[i]))
@@ -39,9 +39,15 @@ def build_knn_graph(coords: list[tuple[float, float]], k: int = 4):
       dist = haversine(lat1, lon1, lat2, lon2)
       dists.append((dist, j))
     for _, j in heapq.nsmallest(free, dists):
-      graph[i].append(j)
-      graph[j].append(i)
-  return graph
+      graph[i].add(j)
+      graph[j].add(i)
+
+  graph_: list[list[int]] = [[] for _ in range(n)]
+  for i in range(n):
+    for dest in graph[i]:
+      graph_[i].append(dest)
+
+  return graph_
 
 coords_list = pd.read_csv('coords4.csv', header=None).values[:, 1:].tolist()
 coords = [(la, lo) for la, lo in coords_list]
@@ -63,15 +69,12 @@ while q:
   vis[pos] = True
 
   dests: list[int] = []
-  print(len(graph[pos]))
   for dest in graph[pos]:
     if vis[dest]:
       continue
 
     q.append(dest)
     dests.append(dest)
-
-  continue
 
   if not dests:
     continue
@@ -81,8 +84,8 @@ while q:
 
   now = dt.now()
 
-  print(origins)
-  print(destinations)
+  # print(origins)
+  # print(destinations)
 
   res = gmaps.distance_matrix(
     origins=origins,
