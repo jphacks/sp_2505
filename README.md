@@ -53,7 +53,7 @@
 ### 活用した技術
 #### API・データ
 * PLATEAU（CityGML）：3D都市モデル。Unity用PLATEAU SDKで取得・描画
-* 
+  
 
 #### フレームワーク・ライブラリ・モジュール
 * React Native　周辺アプリUI・ミッション画面
@@ -61,6 +61,3 @@
 
 #### デバイス
 * iOS / Android スマートフォン
-* 
-
-- 以降はこのコマンドで実行する(`npx expo start` は使わない)
