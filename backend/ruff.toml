@@ -1,0 +1,36 @@
+target-version = 'py311' #使用しているPythonのバージョン
+line-length = 79 # 1行の長さ指定(PEP8)
+exclude = ["/opt/homebrew/**","**/database/**", "**/iTransformerPro/**", "**/MongoDB/**", "**/arc_db_schema/**"]
+indent-width = 2
+
+[lint]
+select = [
+  'F',  # pyflakes
+  'E',  # pycodestyle
+  'W',  # pycodestyle warnings
+  'I',  # isort
+  'D',  # pydocstyle
+  'UP', # pyupgrade
+  'N',  # pep8-naming
+  'A',
+  'B',
+  'I',
+  'C4',
+]
+
+ignore = [
+  'D105', # ドキュメントなしのマジックメソッドを許可
+  'D107', # クラスの__init__メソッドのドキュメント省略を許可
+  'D211', # クラスのdocstringに1行空行をつけることを許可
+  'D415',
+]
+
+unfixable = [
+  "F401", # unused import
+  "F841", # unused variable
+]
+
+[lint.pydocstyle]
+convention = 'google'
+
+[lint.per-file-ignores]
