@@ -4,7 +4,8 @@
 
 ## 各種リンク
 
-+ デモ動画URL： **(ここにURLを入力)**
++ デモ動画URL： ![デモ](https://youtube.com/shorts/S5NT94vvFAQ?feature=share)
++ 実際の利用風景： ![実際の利用風景](https://youtube.com/shorts/iswVEdUktwk?feature=share)
 
 ## 製品概要
 
