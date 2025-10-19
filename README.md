@@ -4,7 +4,8 @@
 
 ## 各種リンク
 
-+ デモ動画URL： **(ここにURLを入力)**
++ デモ動画URL：![https://drive.google.com/file/d/1zYPofUe-bhdh0rOOfojuI9ZsA5wbweHc/view?usp=drive_link](https://drive.google.com/file/d/1zYPofUe-bhdh0rOOfojuI9ZsA5wbweHc/view?usp=drive_link)
++ 実際の使用例：![https://drive.google.com/file/d/1tm3KLU82PcJOQ3pHJ2-unOOvgwIl3z0X/view?usp=drive_link](https://drive.google.com/file/d/1tm3KLU82PcJOQ3pHJ2-unOOvgwIl3z0X/view?usp=drive_link)
 
 ## 製品概要
 
