@@ -35,11 +35,11 @@ export default function TabLayout() {
           }}
         />
         <Tabs.Screen
-          name="challenge"
-          options={{
-            title: 'チャレンジ目標',
-            tabBarIcon: ({ color }) => <Medal color={color as any} size={30} />,
-          }}
+        name="mission"
+        options={{
+          title: 'ミッション',
+          tabBarIcon: ({ color }) => <Atom color={color as any} />,
+        }}
         />
         <Tabs.Screen
           name="Filter"
