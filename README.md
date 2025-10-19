@@ -4,8 +4,8 @@
 
 ## 各種リンク
 
-+ デモ動画URL：![https://drive.google.com/file/d/1zYPofUe-bhdh0rOOfojuI9ZsA5wbweHc/view?usp=drive_link](https://drive.google.com/file/d/1zYPofUe-bhdh0rOOfojuI9ZsA5wbweHc/view?usp=drive_link)
-+ 実際の使用例：![https://drive.google.com/file/d/1tm3KLU82PcJOQ3pHJ2-unOOvgwIl3z0X/view?usp=drive_link](https://drive.google.com/file/d/1tm3KLU82PcJOQ3pHJ2-unOOvgwIl3z0X/view?usp=drive_link)
++ デモ動画URL：![https://drive.google.com/file/d/1zYPofUe-bhdh0rOOfojuI9ZsA5wbweHc/view?usp=sharing](https://drive.google.com/file/d/1zYPofUe-bhdh0rOOfojuI9ZsA5wbweHc/view?usp=sharing)
++ 実際の使用例：![https://drive.google.com/file/d/1tm3KLU82PcJOQ3pHJ2-unOOvgwIl3z0X/view?usp=sharing](https://drive.google.com/file/d/1tm3KLU82PcJOQ3pHJ2-unOOvgwIl3z0X/view?usp=sharing)
 
 ## 製品概要
 
@@ -61,7 +61,7 @@
 ### 注力したこと（こだわり等）
 **1. 「遠回り快適性」の考え方**  
 
-距離や時間、立ち寄りたいジャンルなどをスコアとして評価し、**「最短ルート」だけにとらわれない**提案を実現しました。 **(これは実装できてたらこんな感じで書くって感じです)**  
+距離や時間、立ち寄りたいジャンルなどをスコアとして評価し、**「最短ルート」だけにとらわれず**、楽しく遠回りして運動できるルートの提案を実現しました。
 
 **2. ミステリー型のルート表示**  
 
