@@ -1,14 +1,13 @@
 import React, { useRef, useMemo, useCallback, useEffect, useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { ExternalLink } from '@tamagui/lucide-icons'
-import { Anchor, H2, Paragraph, View, Text, XStack, YStack, Button } from 'tamagui'
+import { Anchor, H2, Paragraph, View, Text, XStack, YStack } from 'tamagui'
 import { Compass, Locate, LocateFixed } from '@tamagui/lucide-icons'
 import { ToastControl } from 'components/CurrentToast'
 import MapView, { Marker, PROVIDER_GOOGLE, Region } from 'react-native-maps'
 import { getCurrentPositionAsync, getForegroundPermissionsAsync, requestForegroundPermissionsAsync } from "expo-location"
 import { StyleSheet, Pressable } from 'react-native'
-import { BottomSheet, BottomSheetModal, BottomSheetView, BottomSheetModalProvider } from '@gorhom/bottom-sheet'
-import { Link } from 'expo-router'
+import BottomSheet from '@gorhom/bottom-sheet'
 import CurrentLocationButton from '@/components/CurrentLocationButton'
 import Filter from '../Filter'
 import OpenFilterButton from '../../components/OpenFilterButton'
@@ -22,7 +21,7 @@ export default function TabOneScreen() {
   const mapRef = useRef<MapView>(null)
 
   //旧FilterScreen
-  const bottomSheetModalRef = useRef<BottomSheetModal>(null);
+  const bottomSheetRef = useRef<BottomSheet>(null);
 
   const navigation = useNavigation()
 
@@ -100,7 +99,7 @@ export default function TabOneScreen() {
 
   // ボタンが押されたときにボトムシートを開くためのコールバック関数
   const handleOpenPress = useCallback(() => {
-    bottomSheetModalRef.current?.expand();
+    bottomSheetRef.current?.expand();
     navigation.navigate(Filter)
   }, []);
   // const handleOpenPress = () => {
@@ -131,7 +130,7 @@ export default function TabOneScreen() {
       </View>
 
       {/* --- ボトムシート --- */}
-      <BottomSheetModal
+      <BottomSheet
         ref={bottomSheetRef}
         index={-1} // 初期状態は閉じておく
         snapPoints={snapPoints}
@@ -140,10 +139,10 @@ export default function TabOneScreen() {
           backgroundColor: '#ffffff'
         }}
       >
-        <BottomSheetView style={styles.contentContainer}>
-          <Link href="../Filter.tsx" asChild />
-        </BottomSheetView>
-      </BottomSheetModal>
+        <View style={styles.contentContainer}>
+          <Filter />
+        </View>
+      </BottomSheet>
     </View>
   );
 }

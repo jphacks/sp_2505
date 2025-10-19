@@ -1,14 +1,10 @@
 import 'react-native-gesture-handler'
 import { Image } from 'react-native'
-import { Link, Tabs, Slot, Stack } from 'expo-router'
+import { Link, Tabs, Slot } from 'expo-router'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { Button, useTheme } from 'tamagui'
 import { Atom, BookOpenText, Home, Medal } from '@tamagui/lucide-icons'
 import HumanWalk from "../../assets/images/mdi--human-walk.png"
-import { NavigationContainer } from '@react-navigation/native';
-import React from 'react';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Filter from '../Filter.tsx';
 
 export default function TabLayout() {
   const theme = useTheme()
@@ -37,7 +33,7 @@ export default function TabLayout() {
             title: 'ホーム画面',
             tabBarIcon: ({ color }) => <Home color={color as any} size={30} />,
           }}
-        />        
+        />
         <Tabs.Screen
         name="mission"
         options={{
