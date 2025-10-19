@@ -1,3 +1,4 @@
+import { Link } from 'expo-router';
 import React, { useState } from 'react';
 import { StyleSheet, Switch, ScrollView, TouchableOpacity, Image } from 'react-native';
 import { Text, View } from 'tamagui';
@@ -102,7 +103,7 @@ const Filter = () => {
 
       {/* 画面下部の送信ボタン */}
       <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
-        <Text style={styles.submitText}>送信</Text>
+        <Link href='./street' style={styles.submitText}>送信</Link>
       </TouchableOpacity>
     </View>
   );
