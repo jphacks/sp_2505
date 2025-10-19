@@ -1,7 +1,9 @@
-import { Link } from 'expo-router';
-import React, { useState } from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 import { StyleSheet, Switch, ScrollView, TouchableOpacity, Image } from 'react-native';
 import { Text, View } from 'tamagui';
+import { useNavigation } from '@react-navigation/native';
+import { Alert } from 'react-native';
+
 
 const genresData = [
   { name: '観光地', image: require('../assets/images/kannkouti.jpg') },
@@ -11,10 +13,15 @@ const genresData = [
 ];
 
 const Filter = () => {
+  const navigation = useNavigation(); // ← 追加！
+  useLayoutEffect(() => {
+    navigation.setOptions({ title:"制約条件の設定"});
+  }, [navigation])
   const [distance, setDistance] = useState(5);
   const [time, setTime] = useState(30);
   const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
   const [toggleHome, setToggleHome] = useState(false);
+  const [mode, setMode] = useState<'distance' | 'time'>('distance');
 
   const toggleGenre = (genre: string) => {
     setSelectedGenres((prev) =>
@@ -22,58 +29,79 @@ const Filter = () => {
     );
   };
 
-  // 送信ボタン押下時の処理
   const handleSubmit = () => {
     console.log('送信データ:', {
+      mode,
       distance,
       time,
       selectedGenres,
       toggleHome,
     });
-    alert('条件が送信されました！');
+    Alert.alert('', '条件が送信されました！');
   };
 
   return (
     <View style={styles.wrapper}>
       <ScrollView style={styles.container}>
 
-        {/* ===== 時間・距離 ===== */}
+        {/* ===== 時間・距離（ラジオボタン） ===== */}
         <Text style={styles.sectionTitle}>時間・距離</Text>
-
-        {/* ===== 距離・時間入力 ===== */}
-        <View style={styles.inputRow}>
+        <View style={styles.radioRow}>
           <TouchableOpacity
-            style={styles.inputButton}
-            onPress={() => setDistance(Math.max(distance - 1, 0))}
+            style={[styles.radioButton, mode === 'distance' && styles.radioSelected]}
+            onPress={() => setMode('distance')}
           >
-            <Text>-</Text>
+            <View style={[styles.circle, mode === 'distance' && styles.circleActive]} />
+            <Text style={styles.radioText}>距離で指定</Text>
           </TouchableOpacity>
-          <View style={styles.inputBox}><Text>{distance} km</Text></View>
           <TouchableOpacity
-            style={styles.inputButton}
-            onPress={() => setDistance(distance + 1)}
+            style={[styles.radioButton, mode === 'time' && styles.radioSelected]}
+            onPress={() => setMode('time')}
           >
-            <Text>+</Text>
-          </TouchableOpacity>
-        </View>
-
-        <View style={styles.inputRow}>
-          <TouchableOpacity
-            style={styles.inputButton}
-            onPress={() => setTime(Math.max(time - 5, 0))}
-          >
-            <Text>-</Text>
-          </TouchableOpacity>
-          <View style={styles.inputBox}><Text>{time} 分</Text></View>
-          <TouchableOpacity
-            style={styles.inputButton}
-            onPress={() => setTime(time + 5)}
-          >
-            <Text>+</Text>
+            <View style={[styles.circle, mode === 'time' && styles.circleActive]} />
+            <Text style={styles.radioText}>時間で指定</Text>
           </TouchableOpacity>
         </View>
 
-        {/* ===== ジャンル（写真付き） ===== */}
+        {/* ===== 距離入力（選択時のみ表示） ===== */}
+        {mode === 'distance' && (
+          <View style={styles.inputRow}>
+            <TouchableOpacity
+              style={styles.inputButton}
+              onPress={() => setDistance(Math.max(distance - 1, 0))}
+            >
+              <Text>-</Text>
+            </TouchableOpacity>
+            <View style={styles.inputBox}><Text>{distance} km</Text></View>
+            <TouchableOpacity
+              style={styles.inputButton}
+              onPress={() => setDistance(distance + 1)}
+            >
+              <Text>+</Text>
+            </TouchableOpacity>
+          </View>
+        )}
+
+        {/* ===== 時間入力（選択時のみ表示） ===== */}
+        {mode === 'time' && (
+          <View style={styles.inputRow}>
+            <TouchableOpacity
+              style={styles.inputButton}
+              onPress={() => setTime(Math.max(time - 5, 0))}
+            >
+              <Text>-</Text>
+            </TouchableOpacity>
+            <View style={styles.inputBox}><Text>{time} 分</Text></View>
+            <TouchableOpacity
+              style={styles.inputButton}
+              onPress={() => setTime(time + 5)}
+            >
+              <Text>+</Text>
+            </TouchableOpacity>
+          </View>
+        )}
+
+        {/* ===== ジャンル ===== */}
         <Text style={styles.sectionTitle}>ジャンル</Text>
         <View style={styles.genreRow}>
           {genresData.map((genre) => {
@@ -111,10 +139,24 @@ const Filter = () => {
 
 const styles = StyleSheet.create({
   wrapper: { flex: 1, backgroundColor: '#fff' },
-
   container: { flex: 1, padding: 20 },
-
   sectionTitle: { fontSize: 20, fontWeight: 'bold', marginTop: 16, marginBottom: 8 },
+
+  // 🔘 ラジオボタン
+  radioRow: { flexDirection: 'row', justifyContent: 'space-around', marginBottom: 12 },
+  radioButton: { flexDirection: 'row', alignItems: 'center', padding: 8 },
+  radioSelected: { backgroundColor: '#f0ecff', borderRadius: 8 },
+  radioText: { marginLeft: 8, fontSize: 16 },
+  circle: {
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    borderWidth: 2,
+    borderColor: '#6a4bc4',
+  },
+  circleActive: {
+    backgroundColor: '#6a4bc4',
+  },
 
   inputRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 8 },
   inputButton: {
@@ -176,7 +218,6 @@ const styles = StyleSheet.create({
   toggleText: { fontSize: 16 },
   note: { fontSize: 12, color: '#666', marginTop: 4 },
 
-  // 下部固定送信ボタン
   submitButton: {
     backgroundColor: '#6a4bc4',
     paddingVertical: 16,
