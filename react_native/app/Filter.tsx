@@ -28,7 +28,7 @@ const Filter = () => {
       prev.includes(genre) ? prev.filter((g) => g !== genre) : [...prev, genre]
     );
   };
-
+  const router = useNavigation();
   const handleSubmit = () => {
     console.log('送信データ:', {
       mode,
@@ -37,7 +37,20 @@ const Filter = () => {
       selectedGenres,
       toggleHome,
     });
-    Alert.alert('', '条件が送信されました！');
+    Alert.alert(
+  '', // ← タイトル（空でもOK）
+  '条件が送信されました！',
+  [
+    {
+      text: 'OK',
+      onPress: () => {
+        // ここにイベントを書く
+        console.log('OKが押されました');
+        router.push('street');
+        },
+      },
+    ]
+    );
   };
 
   return (
