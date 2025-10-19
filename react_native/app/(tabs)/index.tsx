@@ -1,4 +1,5 @@
 import React, { useRef, useMemo, useCallback, useEffect, useState } from 'react'
+import { useNavigation } from '@react-navigation/native'
 import { ExternalLink } from '@tamagui/lucide-icons'
 import { Anchor, H2, Paragraph, View, Text, XStack, YStack } from 'tamagui'
 import { Compass, Locate, LocateFixed } from '@tamagui/lucide-icons'
@@ -22,6 +23,8 @@ export default function TabOneScreen() {
   //旧FilterScreen
   const bottomSheetRef = useRef<BottomSheet>(null);
 
+  const navigation = useNavigation()
+
   useEffect(() => {
     // 位置情報のアクセス許可を取り、現在地情報を取得する
 
@@ -43,7 +46,7 @@ export default function TabOneScreen() {
         return
       }
 
-      try {
+    try {
         const location = await getCurrentPositionAsync({})
         // 緯度・経度はgetCurrentPositionAsyncで取得した緯度・経度
         // 緯度・経度の表示範囲の縮尺は固定値にしてます
@@ -62,6 +65,34 @@ export default function TabOneScreen() {
     // 固定で設定したマーカー情報を設定する
   }, [])
 
+  // ボタンで現在地に移動する関数をここで定義
+  const moveToCurrentLocation = useCallback(async () => {
+    // mapRef.current が存在しない場合は処理を中断
+    if (!mapRef.current) {
+      return;
+    }
+
+    try {
+      // 現在地を再取得
+      const location = await getCurrentPositionAsync({});
+      const { latitude, longitude } = location.coords;
+
+      // 地図をアニメーションさせる
+      mapRef.current.animateToRegion(
+        {
+          latitude,
+          longitude,
+          latitudeDelta: 0.05, // 必要に応じて現在の縮尺を維持するなどの調整も可能
+          longitudeDelta: 0.05,
+        },
+        // 1000 // 1秒かけてアニメーション
+      );
+    } catch (error) {
+      console.error("現在地の取得または地図の移動に失敗しました", error);
+      alert("現在地の取得に失敗しました。");
+    }
+  }, []); // 依存配列は空で問題ありません
+
   // ボトムシートがどの高さで止まるかを定義
   // ここでは画面の25%と85%の高さで止まるように設定
   const snapPoints = useMemo(() => ['25%', '50%', '85%'], []);
@@ -69,6 +100,7 @@ export default function TabOneScreen() {
   // ボタンが押されたときにボトムシートを開くためのコールバック関数
   const handleOpenPress = useCallback(() => {
     bottomSheetRef.current?.expand();
+    navigation.navigate(Filter)
   }, []);
   // const handleOpenPress = () => {
 
@@ -90,7 +122,7 @@ export default function TabOneScreen() {
       {/* --- 地図上に重ねるボタン要素 --- */}
       <View style={styles.CurrentButtonContainer}>
         <View style={{ marginBottom: 12 }}>
-            <CurrentLocationButton mapRef={mapRef} />
+            <CurrentLocationButton onPress={moveToCurrentLocation} />
         </View>
       </View>
       <View style={styles.FilterButtonContainer}>
@@ -165,6 +197,9 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     padding: 16,
+    backgroundStyle: {
+      backgroundColor: '#ffffff'
+    }
   },
   FilterButtonContainer: {
     position: 'absolute',
