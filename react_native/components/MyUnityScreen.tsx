@@ -32,9 +32,10 @@ const MyUnityScreen = () => {
         try {
           const loc = await Location.getCurrentPositionAsync({})
           const { latitude, longitude } = loc.coords
-          const payload = JSON.stringify({ latitude, longitude })
+          const payload =  latitude+" "+longitude ;
 
           unityRef.current.postMessage(
+            //'MessageManager',
             'GameObject',       // Unity 側の GameObject 名
             'ReceiveMessage',   // Unity 側の public メソッド名
             payload            // JSON 文字列で送信
