@@ -71,8 +71,8 @@ def decode_path(path: list[int], start: tuple[float, float]):
     total_distance_m += leg_dist
     total_duration_s += leg_dur
     legs_info.append({
-      'start_address': leg.get('start_address'),
-      'end_address': leg.get('end_address'),
+      # 'start_address': leg.get('start_address'),
+      # 'end_address': leg.get('end_address'),
       'distance_m': leg_dist,
       'duration_s': leg_dur,
       'steps': [{
@@ -80,7 +80,7 @@ def decode_path(path: list[int], start: tuple[float, float]):
         'distance_m': step['distance']['value'],
         'duration_s': step['duration']['value'],
         # step polyline:
-        'polyline': step.get('polyline', {}).get('points')
+        # 'polyline': step.get('polyline', {}).get('points')
       } for step in leg.get('steps', [])]
     })
 
@@ -95,11 +95,11 @@ def decode_path(path: list[int], start: tuple[float, float]):
     'legs': legs_info,
     'total_distance_m': total_distance_m,
     'total_duration_s': total_duration_s,
-    'overview_polyline_encoded': encoded_overview,
-    'overview_polyline_points': overview_points,
-    'waypoint_order': waypoint_order,
-    'raw_route': route,
-    'raw_response': resp
+    # 'overview_polyline_encoded': encoded_overview,
+    # 'overview_polyline_points': overview_points,
+    # 'waypoint_order': waypoint_order,
+    # 'raw_route': route,
+    # 'raw_response': resp
   }
 
 @router.post(path='/route')
@@ -174,5 +174,4 @@ async def route(req: RouteRequest):
 
   print(desc)
 
-  return JSONResponse({
-  }, status_code=200)
+  return JSONResponse(desc, status_code=200)
