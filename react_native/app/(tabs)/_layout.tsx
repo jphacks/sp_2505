@@ -38,16 +38,16 @@ export default function TabLayout() {
         name="mission"
         options={{
           title: 'ミッション',
-          tabBarIcon: ({ color }) => <Atom color={color as any} />,
+          tabBarIcon: ({ color }) => <Medal color={color as any} />,
         }}
         />
-        <Tabs.Screen
+        {/* <Tabs.Screen
           name="Filter"
           options={{
             title: '開始',
             tabBarIcon: ({ color, size }) => <Image source={HumanWalk} style={{width: size, height: size, tintColor: color}} />,
           }}
-        />
+        /> */}
         <Tabs.Screen
           name="logs"
           options={{
