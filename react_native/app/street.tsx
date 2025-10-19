@@ -97,11 +97,7 @@ export default function StreetScreen() {
             borderTopLeftRadius="$4"
             borderTopRightRadius="$4"
           >
-            {/* カスタムハンドル */}
-
-
             {/* スクロール可能な内容 */}
-            <ScrollView flex={1} showsVerticalScrollIndicator={false}>
               <YStack space="$3">
                 <XStack justifyContent="flex-end">
                   <Button
@@ -128,7 +124,6 @@ export default function StreetScreen() {
                   <Text>・目的地に到着しました</Text>
                 </YStack>
               </YStack>
-            </ScrollView>
           </Sheet.Frame>
         </Sheet>
       </View>

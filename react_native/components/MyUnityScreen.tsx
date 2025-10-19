@@ -37,12 +37,12 @@ const MyUnityScreen = () => {
           unityRef.current.postMessage(
             'GameObject',       // Unity 側の GameObject 名
             'ReceiveMessage',   // Unity 側の public メソッド名
-            payload +"ここよー"             // JSON 文字列で送信
+            payload            // JSON 文字列で送信
           )
         } catch (err) {
           console.warn('位置情報取得エラー:', err)
         }
-      }, 500)
+      }, 3000)
     }
 
     startLocationLoop()
