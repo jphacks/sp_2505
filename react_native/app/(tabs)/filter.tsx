@@ -6,7 +6,7 @@ import { OpenFilterScreen } from './index.tsx'
 
 const Filter = () => {
 
-  OpenFilterScreen()
+  //OpenFilterScreen()
 
 
 
