@@ -8,7 +8,7 @@ import { getCurrentPositionAsync, getForegroundPermissionsAsync, requestForegrou
 import { StyleSheet, Pressable } from 'react-native'
 import BottomSheet from '@gorhom/bottom-sheet'
 import CurrentLocationButton from '@/components/CurrentLocationButton'
-import Filter from './Filter'
+import Filter from '../Filter'
 import OpenFilterButton from '../../components/OpenFilterButton'
 
 export default function TabOneScreen() {
@@ -88,11 +88,13 @@ export default function TabOneScreen() {
       />
 
       {/* --- 地図上に重ねるボタン要素 --- */}
-      <View style={styles.buttonContainer}>
+      <View style={styles.CurrentButtonContainer}>
         <View style={{ marginBottom: 12 }}>
             <CurrentLocationButton mapRef={mapRef} />
         </View>
-        <OpenFilterButton onPress={handleOpenPress} />
+      </View>
+      <View style={styles.FilterButtonContainer}>
+          <OpenFilterButton onPress={handleOpenPress} />
       </View>
 
       {/* --- ボトムシート --- */}
@@ -154,7 +156,7 @@ const styles = StyleSheet.create({
   map: {
     ...StyleSheet.absoluteFillObject, // 画面全体にマップを表示
   },
-  buttonContainer: {
+  CurrentButtonContainer: {
     position: 'absolute', // 親要素(container)に対して絶対位置を指定
     bottom: 100, // 下からの位置
     right: 20,   // 右からの位置
@@ -163,5 +165,11 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     padding: 16,
+  },
+  FilterButtonContainer: {
+    position: 'absolute',
+    bottom: 10,
+    right: 170,
+    alignItems: 'center',
   },
 });

@@ -38,7 +38,7 @@ export default function TabLayout() {
         name="mission"
         options={{
           title: 'ミッション',
-          tabBarIcon: ({ color }) => <Atom color={color as any} />,
+          tabBarIcon: ({ color }) => <Medal color={color as any} />,
         }}
         />
         {/* <Tabs.Screen
