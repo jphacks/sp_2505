@@ -1,4 +1,5 @@
 import React, { useRef, useMemo, useCallback, useEffect, useState } from 'react'
+import { useNavigation } from '@react-navigation/native'
 import { ExternalLink } from '@tamagui/lucide-icons'
 import { Anchor, H2, Paragraph, View, Text, XStack, YStack } from 'tamagui'
 import { Compass, Locate, LocateFixed } from '@tamagui/lucide-icons'
@@ -8,8 +9,8 @@ import { getCurrentPositionAsync, getForegroundPermissionsAsync, requestForegrou
 import { StyleSheet, Pressable } from 'react-native'
 import BottomSheet from '@gorhom/bottom-sheet'
 import CurrentLocationButton from '@/components/CurrentLocationButton'
-import Filter from './Filter';
-// import OpenFilterButton from '../../components/OpenFilterButton';
+import Filter from '../Filter'
+import OpenFilterButton from '../../components/OpenFilterButton'
 
 export default function TabOneScreen() {
   const [initRegion, setInitRegion] = useState<Region | null>(null)
@@ -17,10 +18,12 @@ export default function TabOneScreen() {
   const [errorMsg, setErrorMsg] = useState<string | null>(null)
 
   //旧MapScreen
-  const mapRef = useRef<MapView>(null);
+  const mapRef = useRef<MapView>(null)
 
   //旧FilterScreen
-  // const bottomSheetRef = useRef<BottomSheet>(null);
+  const bottomSheetRef = useRef<BottomSheet>(null);
+
+  const navigation = useNavigation()
 
   useEffect(() => {
     // 位置情報のアクセス許可を取り、現在地情報を取得する
@@ -43,7 +46,7 @@ export default function TabOneScreen() {
         return
       }
 
-      try {
+    try {
         const location = await getCurrentPositionAsync({})
         // 緯度・経度はgetCurrentPositionAsyncで取得した緯度・経度
         // 緯度・経度の表示範囲の縮尺は固定値にしてます
@@ -62,16 +65,43 @@ export default function TabOneScreen() {
     // 固定で設定したマーカー情報を設定する
   }, [])
 
+  // ボタンで現在地に移動する関数をここで定義
+  const moveToCurrentLocation = useCallback(async () => {
+    // mapRef.current が存在しない場合は処理を中断
+    if (!mapRef.current) {
+      return;
+    }
 
+    try {
+      // 現在地を再取得
+      const location = await getCurrentPositionAsync({});
+      const { latitude, longitude } = location.coords;
+
+      // 地図をアニメーションさせる
+      mapRef.current.animateToRegion(
+        {
+          latitude,
+          longitude,
+          latitudeDelta: 0.05, // 必要に応じて現在の縮尺を維持するなどの調整も可能
+          longitudeDelta: 0.05,
+        },
+        // 1000 // 1秒かけてアニメーション
+      );
+    } catch (error) {
+      console.error("現在地の取得または地図の移動に失敗しました", error);
+      alert("現在地の取得に失敗しました。");
+    }
+  }, []); // 依存配列は空で問題ありません
 
   // ボトムシートがどの高さで止まるかを定義
   // ここでは画面の25%と85%の高さで止まるように設定
-  // const snapPoints = useMemo(() => ['25%', '50%', '85%'], []);
+  const snapPoints = useMemo(() => ['25%', '50%', '85%'], []);
 
   // ボタンが押されたときにボトムシートを開くためのコールバック関数
-  // const handleOpenPress = useCallback(() => {
-  //   bottomSheetRef.current?.expand();
-  // }, []);
+  const handleOpenPress = useCallback(() => {
+    bottomSheetRef.current?.expand();
+    navigation.navigate(Filter)
+  }, []);
   // const handleOpenPress = () => {
 
   // }
@@ -90,15 +120,17 @@ export default function TabOneScreen() {
       />
 
       {/* --- 地図上に重ねるボタン要素 --- */}
-      <View style={styles.buttonContainer}>
+      <View style={styles.CurrentButtonContainer}>
         <View style={{ marginBottom: 12 }}>
-            <CurrentLocationButton mapRef={mapRef} />
+            <CurrentLocationButton onPress={moveToCurrentLocation} />
         </View>
-        {/* <OpenFilterButton onPress={handleOpenPress} /> */}
+      </View>
+      <View style={styles.FilterButtonContainer}>
+          <OpenFilterButton onPress={handleOpenPress} />
       </View>
 
       {/* --- ボトムシート --- */}
-      {/* <BottomSheet
+      <BottomSheet
         ref={bottomSheetRef}
         index={-1} // 初期状態は閉じておく
         snapPoints={snapPoints}
@@ -110,11 +142,12 @@ export default function TabOneScreen() {
         <View style={styles.contentContainer}>
           <Filter />
         </View>
-      </BottomSheet> */}
+      </BottomSheet>
     </View>
   );
 }
 
+{/**
 export function OpenFilterScreen() {
   const bottomSheetRef = useRef<BottomSheet>(null);
 
@@ -145,6 +178,7 @@ export function OpenFilterScreen() {
     </View>
   )
 }
+*/}
 
 // --- スタイル定義 ---
 const styles = StyleSheet.create({
@@ -154,7 +188,7 @@ const styles = StyleSheet.create({
   map: {
     ...StyleSheet.absoluteFillObject, // 画面全体にマップを表示
   },
-  buttonContainer: {
+  CurrentButtonContainer: {
     position: 'absolute', // 親要素(container)に対して絶対位置を指定
     bottom: 100, // 下からの位置
     right: 20,   // 右からの位置
@@ -163,5 +197,14 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     padding: 16,
+    backgroundStyle: {
+      backgroundColor: '#ffffff'
+    }
+  },
+  FilterButtonContainer: {
+    position: 'absolute',
+    bottom: 10,
+    right: 170,
+    alignItems: 'center',
   },
 });
