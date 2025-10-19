@@ -16,7 +16,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.conure53.exporouterexample"
     },
     "android": {
       "adaptiveIcon": {

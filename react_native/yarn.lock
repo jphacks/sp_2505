@@ -39,6 +39,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@azesmway/react-native-unity@npm:^1.0.11":
+  version: 1.0.11
+  resolution: "@azesmway/react-native-unity@npm:1.0.11"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 10/9011dda5aff414da923d93bfd169ad57e352a3bbd220bc3e835dab12c564a7ccfdcfceecf4a2be1c54f2b34ada02ecb4b839a380a4839e835547d78ab0bb2d03
+  languageName: node
+  linkType: hard
+
 "@babel/code-frame@npm:7.10.4, @babel/code-frame@npm:~7.10.4":
   version: 7.10.4
   resolution: "@babel/code-frame@npm:7.10.4"
@@ -13062,6 +13072,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "react_native@workspace:."
   dependencies:
+    "@azesmway/react-native-unity": "npm:^1.0.11"
     "@babel/core": "npm:^7.24.6"
     "@expo/metro-config": "npm:~54.0.2"
     "@expo/metro-runtime": "npm:~6.1.2"
