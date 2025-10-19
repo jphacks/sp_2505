@@ -1,6 +1,6 @@
 // src/components/FilterButton.tsx
 import React from 'react';
-import { TouchableOpacity, StyleSheet } from 'react-native';
+import { TouchableOpacity, StyleSheet, Image } from 'react-native';
 import HumanWalk from "../assets/images/mdi--human-walk.png"
 
 // ボタンが受け取るプロパティの型を定義
@@ -11,7 +11,7 @@ type OpenFilterButtonProps = {
 const OpenFilterButton: React.FC<OpenFilterButtonProps> = ({ onPress }) => {
   return (
     <TouchableOpacity style={styles.button} onPress={onPress}>
-      {/* <HumanWalk color="white" size={28} /> */}
+      <Image source={HumanWalk} style={styles.icon} />
     </TouchableOpacity>
   );
 };
@@ -36,7 +36,13 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
+    zindex: 100,
   },
+  icon: {
+    width: 30,
+    height: 30,
+    tintColor: 'white',
+  }
 });
 
 export default OpenFilterButton;

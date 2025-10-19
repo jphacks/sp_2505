@@ -5,10 +5,7 @@ import { Text, View } from 'tamagui'
 import { OpenFilterScreen } from './index.tsx'
 
 const Filter = () => {
-
-  OpenFilterScreen()
-
-
+  // OpenFilterScreen()
 
 
 
@@ -22,8 +19,8 @@ const Filter = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    // justifyContent: 'center',
+    // alignItems: 'center',
     padding: 16,
   },
   title: {

@@ -41,13 +41,13 @@ export default function TabLayout() {
             tabBarIcon: ({ color }) => <Medal color={color as any} size={30} />,
           }}
         />
-        <Tabs.Screen
+        {/* <Tabs.Screen
           name="Filter"
           options={{
             title: '開始',
             tabBarIcon: ({ color, size }) => <Image source={HumanWalk} style={{width: size, height: size, tintColor: color}} />,
           }}
-        />
+        /> */}
         <Tabs.Screen
           name="logs"
           options={{

@@ -8,8 +8,8 @@ import { getCurrentPositionAsync, getForegroundPermissionsAsync, requestForegrou
 import { StyleSheet, Pressable } from 'react-native'
 import BottomSheet from '@gorhom/bottom-sheet'
 import CurrentLocationButton from '@/components/CurrentLocationButton'
-import Filter from './Filter';
-// import OpenFilterButton from '../../components/OpenFilterButton';
+import Filter from './Filter'
+import OpenFilterButton from '../../components/OpenFilterButton'
 
 export default function TabOneScreen() {
   const [initRegion, setInitRegion] = useState<Region | null>(null)
@@ -17,10 +17,10 @@ export default function TabOneScreen() {
   const [errorMsg, setErrorMsg] = useState<string | null>(null)
 
   //旧MapScreen
-  const mapRef = useRef<MapView>(null);
+  const mapRef = useRef<MapView>(null)
 
   //旧FilterScreen
-  // const bottomSheetRef = useRef<BottomSheet>(null);
+  const bottomSheetRef = useRef<BottomSheet>(null);
 
   useEffect(() => {
     // 位置情報のアクセス許可を取り、現在地情報を取得する
@@ -62,16 +62,14 @@ export default function TabOneScreen() {
     // 固定で設定したマーカー情報を設定する
   }, [])
 
-
-
   // ボトムシートがどの高さで止まるかを定義
   // ここでは画面の25%と85%の高さで止まるように設定
-  // const snapPoints = useMemo(() => ['25%', '50%', '85%'], []);
+  const snapPoints = useMemo(() => ['25%', '50%', '85%'], []);
 
   // ボタンが押されたときにボトムシートを開くためのコールバック関数
-  // const handleOpenPress = useCallback(() => {
-  //   bottomSheetRef.current?.expand();
-  // }, []);
+  const handleOpenPress = useCallback(() => {
+    bottomSheetRef.current?.expand();
+  }, []);
   // const handleOpenPress = () => {
 
   // }
@@ -94,11 +92,11 @@ export default function TabOneScreen() {
         <View style={{ marginBottom: 12 }}>
             <CurrentLocationButton mapRef={mapRef} />
         </View>
-        {/* <OpenFilterButton onPress={handleOpenPress} /> */}
+        <OpenFilterButton onPress={handleOpenPress} />
       </View>
 
       {/* --- ボトムシート --- */}
-      {/* <BottomSheet
+      <BottomSheet
         ref={bottomSheetRef}
         index={-1} // 初期状態は閉じておく
         snapPoints={snapPoints}
@@ -110,11 +108,12 @@ export default function TabOneScreen() {
         <View style={styles.contentContainer}>
           <Filter />
         </View>
-      </BottomSheet> */}
+      </BottomSheet>
     </View>
   );
 }
 
+{/**
 export function OpenFilterScreen() {
   const bottomSheetRef = useRef<BottomSheet>(null);
 
@@ -145,6 +144,7 @@ export function OpenFilterScreen() {
     </View>
   )
 }
+*/}
 
 // --- スタイル定義 ---
 const styles = StyleSheet.create({
