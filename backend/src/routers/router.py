@@ -70,19 +70,19 @@ def decode_path(path: list[int], start: tuple[float, float]):
     leg_dur = leg['duration']['value']       # seconds
     total_distance_m += leg_dist
     total_duration_s += leg_dur
-    legs_info.append({
+    legs_info.extend(
       # 'start_address': leg.get('start_address'),
       # 'end_address': leg.get('end_address'),
-      'distance_m': leg_dist,
-      'duration_s': leg_dur,
-      'steps': [{
+      # 'distance_m': leg_dist,
+      # 'duration_s': leg_dur,
+      [{
         'instruction': step.get('html_instructions'),
         'distance_m': step['distance']['value'],
         'duration_s': step['duration']['value'],
         # step polyline:
         # 'polyline': step.get('polyline', {}).get('points')
       } for step in leg.get('steps', [])]
-    })
+    )
 
   # overview_polyline: encoded polyline for whole route
   encoded_overview = route.get('overview_polyline', {}).get('points')
