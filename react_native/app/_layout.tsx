@@ -9,6 +9,7 @@ import { SplashScreen, Stack } from 'expo-router'
 import { Provider } from 'components/Provider'
 import { useTheme } from 'tamagui'
 import * as Location from 'expo-location';
+import { GestureHandlerRootView } from 'react-native-gesture-handler' // この行を追加
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -42,7 +43,10 @@ export default function RootLayout() {
 
   return (
     <Providers>
-      <RootLayoutNav />
+      {/* GestureHandlerRootViewでラップ */}
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <RootLayoutNav />
+      </GestureHandlerRootView>
     </Providers>
   )
 }
