@@ -193,7 +193,7 @@ const styles = StyleSheet.create({
 
 const sendFilter = (distance, time) => {
 
-  const [inputText, setInputText] = useState('');
+  // const [inputText, setInputText] = useState('');
 
   // POSTリクエストを送信する非同期関数
   const sendDataToServer = async () => {
@@ -202,7 +202,7 @@ const sendFilter = (distance, time) => {
     const { latitude, longitude } = location.coords
 
     // ここをあなたのPCのIPアドレスに置き換えてください
-    const apiUrl = 'http://localhost:8000'; 
+    const apiUrl = 'http://localhost:8000/api/route'; 
 
     try {
       const response = await fetch(apiUrl, {
