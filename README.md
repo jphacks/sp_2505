@@ -1,7 +1,5 @@
 # Traverse（トラヴァース）
 
-[![IMAGE ALT TEXT HERE](https://jphacks.com/wp-content/uploads/2025/05/JPHACKS2025_ogp.jpg)](https://www.youtube.com/watch?v=lA9EluZugD8)
-
 ## 製品概要
 ### 背景(製品開発のきっかけ、課題等）
 毎日の健康維持のためには、継続的な軽い運動が欠かせません。しかし実際には、以下のような悩みを抱える人が多くいます。
@@ -59,7 +57,4 @@
 * iOS / Android スマートフォン
 * 
 
-### 独自技術
-#### ハッカソンで開発した独自機能・技術
-* 独自で開発したものの内容をこちらに記載してください
-* 特に力を入れた部分をファイルリンク、またはcommit_idを記載してください。
+- 以降はこのコマンドで実行する(`npx expo start` は使わない)
