@@ -3,6 +3,7 @@ import { StyleSheet, Switch, ScrollView, TouchableOpacity, Image } from 'react-n
 import { Text, View } from 'tamagui';
 import { useNavigation } from '@react-navigation/native';
 import { Alert } from 'react-native';
+import { getCurrentPositionAsync } from 'expo-location';
 
 
 const genresData = [
@@ -11,6 +12,64 @@ const genresData = [
   { name: 'レストラン', image: require('../assets/images/food.jpg') },
   { name: '公園', image: require('../assets/images/park.jpg') },
 ];
+
+
+const sendFilter = (distance, time) => {
+
+  // const [inputText, setInputText] = useState('');
+
+  // POSTリクエストを送信する非同期関数
+  const sendDataToServer = async () => {
+    // 送信するデータが空の場合は何もしない
+    const location = await getCurrentPositionAsync()
+    const { latitude, longitude } = location.coords
+
+    // ここをあなたのPCのIPアドレスに置き換えてください
+    const apiUrl = 'http://192.168.100.104:8000/api/route';
+
+    try {
+      console.log('----------------------------------');
+      
+      const response = await fetch(apiUrl, {
+        method: 'POST', // HTTPメソッド
+        headers: {
+          // 送信するデータ形式はJSONであることをヘッダーで示す
+          'Content-Type': 'application/json',
+        },
+        // 送信するデータをJSON文字列に変換してbodyに設定
+        body: JSON.stringify({
+          lat: latitude,
+          lon: longitude,
+          distance: distance,
+          time: null,
+          preference: "parks"
+        }),
+      });
+
+      // サーバーからのレスポンスをJSONとして解析
+      const jsonResponse = await response.json();
+
+      // ステータスコードが200なら成功
+      if (response.status === 200) {
+        Alert.alert('成功', `サーバーからの返信: ${jsonResponse.received}`);
+        console.log(jsonResponse);
+
+      } else {
+        Alert.alert('エラー', `サーバーエラー: ${jsonResponse.error}`);
+        console.log(jsonResponse);
+
+      }
+
+    } catch (error) {
+      // ネットワークエラーなど
+      console.error(error);
+      Alert.alert('通信エラー', 'サーバーへの接続に失敗しました。');
+    }
+  };
+
+  sendDataToServer()
+};
+
 
 const Filter = () => {
   const navigation = useNavigation(); // ← 追加！
@@ -37,6 +96,7 @@ const Filter = () => {
       selectedGenres,
       toggleHome,
     });
+    sendFilter(distance, time)
     Alert.alert(
   '', // ← タイトル（空でもOK）
   '条件が送信されました！',
