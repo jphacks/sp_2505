@@ -4,8 +4,8 @@
 
 ## 各種リンク
 
-+ デモ動画URL：https://drive.google.com/file/d/1zYPofUe-bhdh0rOOfojuI9ZsA5wbweHc/view?usp=sharing
-+ 実際の使用例：https://drive.google.com/file/d/1tm3KLU82PcJOQ3pHJ2-unOOvgwIl3z0X/view?usp=sharing
++ デモ動画URL： (https://youtube.com/shorts/V60dFYHWxRM)
++ 実際の利用風景： (https://youtube.com/shorts/iswVEdUktwk?feature=share)
 
 ## 製品概要
 
