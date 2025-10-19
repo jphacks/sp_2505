@@ -9,6 +9,7 @@ import { SplashScreen, Stack } from 'expo-router'
 import { Provider } from 'components/Provider'
 import { useTheme } from 'tamagui'
 import { GestureHandlerRootView } from 'react-native-gesture-handler' // この行を追加
+import { NavigationContainer } from '@react-navigation/native';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -79,6 +80,14 @@ function RootLayoutNav() {
             contentStyle: {
               backgroundColor: theme.background.val,
             },
+          }}
+        />
+
+        <Stack.Screen
+          name="Filter"
+          options={{
+            presentation: 'modal',
+            title: "制約条件",
           }}
         />
       </Stack>
