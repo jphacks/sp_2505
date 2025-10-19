@@ -1,6 +1,6 @@
 # Traverse（トラヴァース）
 
-![](https://github.com/jphacks/sp_2505/sp_2505/react_native/assets/images/Traverse.jpg)
+![](https://github.com/jphacks/sp_2505/react_native/assets/images/Traverse.jpg)
 ## 製品概要
 ### 背景(製品開発のきっかけ、課題等）
 毎日の健康維持のためには、継続的な軽い運動が欠かせません。しかし実際には、以下のような悩みを抱える人が多くいます。
