@@ -17,6 +17,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@azesmway/react-native-unity@npm:^1.0.11":
+  version: 1.0.11
+  resolution: "@azesmway/react-native-unity@npm:1.0.11"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 10/9011dda5aff414da923d93bfd169ad57e352a3bbd220bc3e835dab12c564a7ccfdcfceecf4a2be1c54f2b34ada02ecb4b839a380a4839e835547d78ab0bb2d03
+  languageName: node
+  linkType: hard
+
 "@babel/code-frame@npm:7.10.4, @babel/code-frame@npm:~7.10.4":
   version: 7.10.4
   resolution: "@babel/code-frame@npm:7.10.4"
@@ -10031,9 +10041,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-worklets@npm:0.5.1":
-  version: 0.5.1
-  resolution: "react-native-worklets@npm:0.5.1"
+"react-native-worklets@npm:^0.6.1":
+  version: 0.6.1
+  resolution: "react-native-worklets@npm:0.6.1"
   dependencies:
     "@babel/plugin-transform-arrow-functions": "npm:^7.0.0-0"
     "@babel/plugin-transform-class-properties": "npm:^7.0.0-0"
@@ -10050,7 +10060,7 @@ __metadata:
     "@babel/core": ^7.0.0-0
     react: "*"
     react-native: "*"
-  checksum: 10/39e70b64560cc4b031ac329bfbd0686b744b6940bbe1d1768a227bb9e142a0e2bad5ef16752003e83374db49d8d6396c72236b9c279e1465a7177f887ae12d48
+  checksum: 10/016dac0bbbce52825dc3b6385a97a3a136abb0ba8896f66192f8e45907896fc9ac817b12a67c5aa67d69df609f30515ceede300d080cf442918f1447452f3583
   languageName: node
   linkType: hard
 
@@ -10224,6 +10234,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "react_native@workspace:."
   dependencies:
+    "@azesmway/react-native-unity": "npm:^1.0.11"
     "@babel/core": "npm:^7.24.6"
     "@expo/metro-config": "npm:~54.0.2"
     "@expo/metro-runtime": "npm:~6.1.2"
@@ -10261,7 +10272,7 @@ __metadata:
     react-native-screens: "npm:~4.16.0"
     react-native-svg: "npm:15.12.1"
     react-native-web: "npm:^0.21.0"
-    react-native-worklets: "npm:0.5.1"
+    react-native-worklets: "npm:^0.6.1"
     tamagui: "npm:^1.135.3"
     typescript: "npm:~5.9.2"
   languageName: unknown

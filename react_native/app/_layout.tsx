@@ -8,6 +8,7 @@ import { useFonts } from 'expo-font'
 import { SplashScreen, Stack } from 'expo-router'
 import { Provider } from 'components/Provider'
 import { useTheme } from 'tamagui'
+import * as Location from 'expo-location';
 import { GestureHandlerRootView } from 'react-native-gesture-handler' // この行を追加
 
 export {
@@ -63,6 +64,12 @@ function RootLayoutNav() {
       <Stack>
         <Stack.Screen
           name="(tabs)"
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="street"
           options={{
             headerShown: false,
           }}
