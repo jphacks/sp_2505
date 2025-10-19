@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { TextInput, Button, StyleSheet, Alert, Switch, ScrollView, TouchableOpacity, Image } from 'react-native';
 import { Text, View } from 'tamagui'
+import { getCurrentPositionAsync } from 'expo-location'
 import TabOneScreen from './(tabs)/index.tsx'
 
 const genresData = [
@@ -198,7 +199,7 @@ const sendFilter = (distance, time) => {
   // POSTリクエストを送信する非同期関数
   const sendDataToServer = async () => {
     // 送信するデータが空の場合は何もしない
-    const location = await getCurrentLocation()
+    const location = await getCurrentPositionAsync()
     const { latitude, longitude } = location.coords
 
     // ここをあなたのPCのIPアドレスに置き換えてください
@@ -227,8 +228,12 @@ const sendFilter = (distance, time) => {
       // ステータスコードが200なら成功
       if (response.status === 200) {
         Alert.alert('成功', `サーバーからの返信: ${jsonResponse.received}`);
+        console.log(jsonResponse);
+        
       } else {
         Alert.alert('エラー', `サーバーエラー: ${jsonResponse.error}`);
+        console.log(jsonResponse);
+        
       }
 
     } catch (error) {
@@ -237,6 +242,8 @@ const sendFilter = (distance, time) => {
       Alert.alert('通信エラー', 'サーバーへの接続に失敗しました。');
     }
   };
+
+  sendDataToServer()
 };
 
 export default Filter;
