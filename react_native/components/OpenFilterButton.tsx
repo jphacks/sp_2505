@@ -22,9 +22,9 @@ const styles = StyleSheet.create({
     // bottom: -90,
     // right: 155,
     backgroundColor: '#007AFF', // iOSの標準的な青色
-    width: 60,
-    height: 60,
-    borderRadius: 30,
+    width: 80,
+    height: 80,
+    borderRadius: 60,
     justifyContent: 'center',
     alignItems: 'center',
     // 影を付けて立体感を出す
@@ -39,8 +39,8 @@ const styles = StyleSheet.create({
     // zIndex: 100,
   },
   icon: {
-    width: 30,
-    height: 30,
+    width: 55,
+    height: 55,
     tintColor: 'white',
   }
 });
