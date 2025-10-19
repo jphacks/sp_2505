@@ -6620,17 +6620,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"expo-linear-gradient@npm:^15.0.7":
-  version: 15.0.7
-  resolution: "expo-linear-gradient@npm:15.0.7"
-  peerDependencies:
-    expo: "*"
-    react: "*"
-    react-native: "*"
-  checksum: 10/a829d45e9d9a72c1a75238d142148fa25eb9f2d0b6ee9aa6b15b2dbb2d355b51b0c7749efd92bdf9c38b28cad00f6f1a919658d497d54ec1df69a471a9584d12
-  languageName: node
-  linkType: hard
-
 "expo-linking@npm:~8.0.8":
   version: 8.0.8
   resolution: "expo-linking@npm:8.0.8"
@@ -9900,7 +9889,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-gesture-handler@npm:~2.28.0":
+"react-native-gesture-handler@npm:^2.28.0":
   version: 2.28.0
   resolution: "react-native-gesture-handler@npm:2.28.0"
   dependencies:
@@ -10242,7 +10231,6 @@ __metadata:
     expo: "npm:^54.0.0"
     expo-build-properties: "npm:~1.0.9"
     expo-font: "npm:~14.0.9"
-    expo-linear-gradient: "npm:^15.0.7"
     expo-linking: "npm:~8.0.8"
     expo-location: "npm:^19.0.7"
     expo-router: "npm:~6.0.12"
@@ -10254,7 +10242,7 @@ __metadata:
     react-dom: "npm:19.1.0"
     react-native: "npm:0.81.4"
     react-native-geolocation-service: "npm:^5.3.1"
-    react-native-gesture-handler: "npm:~2.28.0"
+    react-native-gesture-handler: "npm:^2.28.0"
     react-native-maps: "npm:1.20.1"
     react-native-reanimated: "npm:^4.1.3"
     react-native-safe-area-context: "npm:~5.6.0"
