@@ -35,15 +35,15 @@ const MyUnityScreen = () => {
           const payload =  latitude+" "+longitude ;
 
           unityRef.current.postMessage(
-            //'MessageManager',
-            'GameObject',       // Unity 側の GameObject 名
+            'MessageManager',
+            //'GameObject',       // Unity 側の GameObject 名
             'ReceiveMessage',   // Unity 側の public メソッド名
             payload            // JSON 文字列で送信
           )
         } catch (err) {
           console.warn('位置情報取得エラー:', err)
         }
-      }, 3000)
+      }, 500)
     }
 
     startLocationLoop()
