@@ -4,7 +4,7 @@
 
 ## 各種リンク
 
-+ デモ動画URL： (https://youtube.com/shorts/S5NT94vvFAQ?feature=share)
++ デモ動画URL： (https://youtube.com/shorts/V60dFYHWxRM)
 + 実際の利用風景： (https://youtube.com/shorts/iswVEdUktwk?feature=share)
 
 ## 製品概要
