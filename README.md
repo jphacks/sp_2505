@@ -10,7 +10,7 @@
 - **目標がなくて**モチベーションが続かない
 - 努力しても**成果が見えづらい**
 
-![背景](https://raw.githubusercontent.com/jphacks/sp_2505/kishiko_dev/react_native/assets/slides/4.jpg)
+![背景](https://raw.githubusercontent.com/jphacks/sp_2505/kishiko_dev/react_native/assets/slides/4.png)
   
 
 その背景として、次のような課題が挙げられます。
@@ -26,7 +26,7 @@
 ### 製品説明（具体的な製品の説明）
 ### 特長
 
-![特徴](https://raw.githubusercontent.com/jphacks/sp_2505/kishiko_dev/react_native/assets/slides/5.jpg)
+![特徴](https://raw.githubusercontent.com/jphacks/sp_2505/kishiko_dev/react_native/assets/slides/5.png)
 
 #### 1. “遠回り最適化”ルート提案
 - 最短ではなく、運動目的に合わせた“適度な遠回り”を自動設計
@@ -67,7 +67,7 @@
 * Unity 6000.0.58f2：コア実装／3D描画／ミステリー演出
 * Python：バックエンド(経路探索)
 
-![技術スタック](https://raw.githubusercontent.com/jphacks/sp_2505/kishiko_dev/react_native/assets/slides/10.jpg)
+![技術スタック](https://raw.githubusercontent.com/jphacks/sp_2505/kishiko_dev/react_native/assets/slides/10.png)
 
 #### デバイス
 * iOS / Android スマートフォン
