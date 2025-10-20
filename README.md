@@ -51,6 +51,12 @@
 - 目的地ジャンルや時間・距離に沿った **「ちょうどよい遠回り」を手間なく設計** できる
 - 運動ルートの **「単調さ」を解消** し、探索と収集の楽しさで日々の歩行を継続できる
 - 歩いた記録が3Dマップに少しずつ反映され、**自分の足跡が見える**形でたまっていく楽しさを味わえる
+
+
+![ホーム画面](https://github.com/jphacks/sp_2505/blob/kishiko-dev/react_native/assets/slides/IMG_1830.png)
+![制約条件の入力](https://github.com/jphacks/sp_2505/blob/kishiko-dev/react_native/assets/slides/IMG_1832.png)
+![3Dマップ](https://github.com/jphacks/sp_2505/blob/kishiko-dev/react_native/assets/slides/IMG_1834.png)
+
   
 ### 今後の展望
 - 都市拡大（札幌市北区・東区 → 他主要都市）
